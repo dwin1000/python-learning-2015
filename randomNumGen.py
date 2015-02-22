@@ -1,26 +1,29 @@
 #!/usr/bin/env python
 import random
-# bah
+
+""" 2nd attempt at writing a random number guessing game
+D. Nguyen 2015-02-15
 """
-Random number generator. You will have unlimited guesses
-"""
+
 def main():
     print "Guess a number between 1 and 100"
     randomNum = random.randint(1,100)
+    count = 0
 
-    found = False
+    flag = False
 
-    while not found:
-        userGuess = input("Guess sucker!!! : ")
+    while not flag:
+        guessNum = input("guess a number %s", count)
 
-        if userGuess == randomNum:
-            print "You got it sucka!!! Guess it right"
-            found = True
-        elif userGuess > randomNum:
-            print "Guess Lower"
+        if guessNum == randomNum:
+            print "Hooray, you guessed right"
+            flag = True
+        elif guessNum < randomNum:
+            print "Guess higher"
         else:
-            print "Guess Higher!!!"
+            print "Guess lower"
 
-#bah
+        count = count + 1
+
 if __name__ == "__main__":
     main()
