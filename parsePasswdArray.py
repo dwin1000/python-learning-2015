@@ -4,8 +4,8 @@ import sys
 
 """
 This script attempts to open up the passwd file and look
-usernames that appear more than twice. It will print out the
-associated gid
+for any uid that appears multiple times. if true then it
+echo out the associated usernames
 """
 file = "passwd"
 #def splitLines():
@@ -20,23 +20,24 @@ def main():
     else:
         print "Found file...continuing"
 
-    fileHandle = open(file,"r+")
-    print "Name of the file: ", fileHandle.name
-    print "mode of the file: ", fileHandle.mode
+    try:
+        fileHandle = open(file,"r+")
+        print "Name of the file: ", fileHandle.name
+        print "mode of the file: ", fileHandle.mode
 
-    for line in fileHandle:
-        #strip new lines
-        newLine = line.rstrip('\n')
-        print "Line: %s" % newLine
-        listLine = newLine.split(":")
-        user = listLine[0];
-        uid = listLine[2];
-        gid = listLine[3];
-        print "User: ", user, " | Uid: ", uid, " | Gid: ", gid
-        dictUser.setdefault(uid,[])
-        dictUser[uid].append(user)
-
-    fileHandle.close()
+        for line in fileHandle:
+            #strip new lines
+            newLine = line.rstrip('\n')
+            print "Line: %s" % newLine
+            listLine = newLine.split(":")
+            user = listLine[0];
+            uid = listLine[2];
+            gid = listLine[3];
+            print "User: ", user, " | Uid: ", uid, " | Gid: ", gid
+            dictUser.setdefault(uid,[])
+            dictUser[uid].append(user)
+    finally:
+        fileHandle.close()
 
     for key in dictUser:
         if len(dictUser[key]) > 1 :
