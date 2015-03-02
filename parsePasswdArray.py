@@ -34,8 +34,8 @@ def main():
             uid = listLine[2];
             gid = listLine[3];
             print "User: ", user, " | Uid: ", uid, " | Gid: ", gid
-            dictUser.setdefault(uid,[])
-            dictUser[uid].append(user)
+            dictUser.setdefault(uid,[]).append(user)
+
     finally:
         fileHandle.close()
 
