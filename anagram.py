@@ -6,8 +6,6 @@ Two criterias have to meet. They have the exact amount of characters.
 The letters are case insensitive.
 """
 import sys
-anagramDict1 = {}
-anagramDict2 = {}
 
 def errorMsg():
     print "Boo!! The anagram Police says you shall not pass GO!!"
@@ -25,6 +23,7 @@ def main():
         print "exiting!!"
         sys.exit(2)
 
+    # lower casing and breaking it down to letters to put into a list
     firstArg = list(sys.argv[1].lower())
     secondArg = list(sys.argv[2].lower())
 
@@ -33,6 +32,7 @@ def main():
     for letter1 in firstArg:
         print "letter", letter1
 
+        # a dict lookup would be faster 
         for letter2 in secondArg:
             if letter1 == letter2:
                 secondArg.remove(letter2)
